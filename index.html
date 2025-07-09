@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Te pido perdón, Noemí 💔</title>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Quicksand:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Quicksand', sans-serif;
+      background: linear-gradient(135deg, #ffd1dc, #ffe4e1);
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .card {
+      background: white;
+      padding: 2rem;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      max-width: 750px;
+      width: 90%;
+      z-index: 2;
+      text-align: center;
+    }
+
+    h1 {
+      font-family: 'Dancing Script', cursive;
+      color: #d63384;
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .btn {
+      padding: 0.8rem 1.5rem;
+      background-color: #d63384;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .btn:hover {
+      background-color: #c21868;
+    }
+
+    .mensaje {
+      display: none;
+      text-align: left;
+      margin-top: 2rem;
+      font-size: 1.15rem;
+      line-height: 1.7;
+      color: #333;
+      white-space: pre-wrap;
+      animation: fadeInUp 1.2s ease forwards;
+      opacity: 0;
+      font-family: 'Dancing Script', cursive;
+    }
+
+    .signature {
+      margin-top: 2rem;
+      font-style: italic;
+      text-align: right;
+      color: #777;
+      font-family: 'Quicksand', sans-serif;
+    }
+
+    @keyframes fadeInUp {
+      0% { opacity: 0; transform: translateY(20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Corazones flotando */
+    .heart {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: red;
+      transform: rotate(45deg);
+      animation: float 7s linear infinite;
+      opacity: 0.6;
+      z-index: 1;
+    }
+
+    .heart::before,
+    .heart::after {
+      content: '';
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: red;
+      border-radius: 50%;
+    }
+
+    .heart::before {
+      top: -10px;
+      left: 0;
+    }
+
+    .heart::after {
+      left: -10px;
+      top: 0;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(100vh) rotate(45deg);
+        opacity: 0;
+      }
+      50% {
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-20vh) rotate(45deg);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<audio id="bg-music" loop>
+  <source src="audio.m4a" type="audio/mp4">
+  Tu navegador no soporta audio.
+</audio>
+
+<div class="card">
+  <h1>Te pido perdón, Noemí 💔</h1>
+  <button class="btn" onclick="mostrarMensaje()">Ver mensaje</button>
+  <div class="mensaje" id="mensaje">
+    Noemí, amor mío:
+
+    Hoy te escribo desde el rincón más vulnerable de mi alma,
+    con el corazón hecho pedazos y la voz temblando de arrepentimiento.
+
+    He fallado, y lo sé. No intento justificarme.
+    Mis dudas, mis miedos y mi inseguridad nublaron mi juicio,
+    y en ese error te herí...
+    justo a ti, que siempre me diste amor sincero,
+    paciencia infinita y ternura sin condiciones.
+
+    El dolor que te causé también vive en mí.
+    Me pesa cada lágrima que derramaste,
+    cada silencio tuyo que nació de la decepción.
+
+    Eres luz, eres calma,
+    eres todo lo que no merecía perder por un instante de desconfianza.
+
+    Te pido perdón con el alma abierta,
+    sin máscaras, sin excusas, sin rodeos.
+    Solo con la verdad que nace del amor más profundo.
+
+    Prometo crecer, cambiar, sanar…
+    y aprender a amarte como mereces:
+    con seguridad, con confianza, con el respeto que tú inspiras.
+
+    Si alguna parte de tu corazón aún cree en mí,
+    te ruego que me des la oportunidad de enmendar este dolor.
+
+    Te amo más de lo que mis actos demostraron,
+    y mucho más de lo que mis palabras pueden decir.
+
+    <div class="signature">Con todo mi amor, mi arrepentimiento y mi esperanza,<br>Yaddir.</div>
+  </div>
+</div>
+
+<script>
+  function mostrarMensaje() {
+    const msg = document.getElementById('mensaje');
+    msg.style.display = 'block';
+    msg.style.opacity = '1';
+    document.querySelector('.btn').style.display = 'none';
+    document.getElementById('bg-music').play().catch(()=>{});
+  }
+
+  // Corazones flotantes
+  setInterval(() => {
+    const heart = document.createElement('div');
+    const size = Math.random() * 15 + 10;
+    heart.className = 'heart';
+    heart.style.width = heart.style.height = size + 'px';
+    heart.style.left = Math.random() * 100 + 'vw';
+    heart.style.animationDuration = 4 + Math.random() * 6 + 's';
+    document.body.appendChild(heart);
+    setTimeout(() => heart.remove(), 10000);
+  }, 700);
+
+  // Autoplay audio tras clic
+  window.addEventListener('click', () => {
+    const audio = document.getElementById('bg-music');
+    if (audio && audio.paused) audio.play();
+  }, { once: true });
+</script>
+
+</body>
+</html>
